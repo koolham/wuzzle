@@ -44,6 +44,63 @@ function getHintColor(guess, answer) {
   return "";
 }
 
+function TutorialModal({ onClose }) {
+  return (
+    <div className="tutorial-modal">
+      <div className="tutorial-content">
+        <h2>How to Play Wuzzle</h2>
+        <ol>
+          <li>
+            <strong>Choose a difficulty</strong> at the top: Easy, Medium, or
+            Hard. This sets how many letters are revealed to start.
+          </li>
+          <li>
+            <strong>Each puzzle is a 6x6 word square.</strong> Every row and
+            every column forms a valid word.
+          </li>
+          <li>
+            <strong>Some letters are revealed.</strong> Click on a blank cell
+            and type a letter to guess it.
+          </li>
+          <li>
+            <strong>Hints:</strong> The cell background changes color as you
+            type:
+            <ul>
+              <li>
+                <span className="cell cell-hint-yellow">Yellow</span>: Very
+                close (1 letter away alphabetically)
+              </li>
+              <li>
+                <span className="cell cell-hint-orange">Orange</span>: Close
+                (2-3 letters away)
+              </li>
+              <li>
+                <span className="cell cell-hint-red">Red</span>: Somewhat close
+                (4-6 letters away)
+              </li>
+              <li>
+                <span className="cell cell-correct">Green</span>: Correct
+                letter!
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Auto-advance:</strong> When you enter the correct letter,
+            the cursor jumps to the next empty cell.
+          </li>
+          <li>
+            <strong>Complete the puzzle</strong> by filling in all the correct
+            letters. When finished, click <b>Next</b> to try the next puzzle!
+          </li>
+        </ol>
+        <button className="tutorial-close" onClick={onClose}>
+          Got it!
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Wuzzle() {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [level, setLevel] = useState(0); // 0-based index for levels
@@ -51,6 +108,7 @@ function Wuzzle() {
   const [mask, setMask] = useState([]); // true = revealed, false = hidden
   const [guesses, setGuesses] = useState([]); // user's guesses
   const [completed, setCompleted] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
 
   // Refs for all input cells
   const inputRefs = React.useRef([]);
@@ -146,6 +204,14 @@ function Wuzzle() {
             height="120"
           />
           <h1 style={{ margin: "16px 0 0 0" }}>Wuzzle</h1>
+          <div style={{ textAlign: "center", margin: "12px 0" }}>
+            <button
+              className="tutorial-btn"
+              onClick={() => setShowTutorial(true)}
+            >
+              How to Play
+            </button>
+          </div>
         </div>
         <div className="difficulty-controls">
           {Object.keys(DIFFICULTY).map((diff) => (
@@ -222,6 +288,9 @@ function Wuzzle() {
               </button>
             )}
           </div>
+        )}
+        {showTutorial && (
+          <TutorialModal onClose={() => setShowTutorial(false)} />
         )}
       </div>
       <footer className="footer">

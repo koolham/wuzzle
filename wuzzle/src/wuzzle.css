@@ -476,3 +476,68 @@ button:active {
   border-color: #2bb47d !important;
   font-weight: bold;
 }
+
+/* Tutorial Modal Styles */
+.tutorial-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tutorial-content {
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  max-width: 95vw;
+  width: 420px;
+  padding: 32px 24px 24px 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  font-size: 1.08rem;
+}
+.tutorial-content h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #3ad29f;
+}
+.tutorial-content ol {
+  padding-left: 1.2em;
+}
+.tutorial-content ul {
+  margin: 0.5em 0 0.5em 1.2em;
+  padding: 0;
+}
+.tutorial-content .cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7em;
+  height: 1.7em;
+  font-size: 1em;
+  margin-right: 0.3em;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-weight: bold;
+}
+.tutorial-close,
+.tutorial-btn {
+  margin-top: 18px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  background: #3ad29f;
+  color: #222;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tutorial-close:hover,
+.tutorial-btn:hover {
+  background: #2bb47d;
+}
